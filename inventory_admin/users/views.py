@@ -39,10 +39,13 @@ def login_view(request):
                 #     response['statusCode'] = const.EMAIL_NOT_VERIFIED_ERROR_CODE
                 #     response['message'] = 'Your email is not verified yet!'
                 #     return JsonResponse(response)
+                if  data.get('role') != user.role:
+                    response['statusCode'] = const.INVALID_INPUT_ERROR_CODE
+                    response['message'] = 'Your role is incorrect!'
+                    return JsonResponse(response)
                 user.last_login = timezone.now()
                 user.save()
-                # send_welcome_email(user)   # calling temporary, when user first time login
-                        
+                # send_welcome_email(user)   # calling temporary, when user first time login               
                 
                 # response['data'] = get_login_response(user)
                 
