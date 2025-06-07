@@ -18,6 +18,7 @@ from users import models
 
 
 
+
 @api_view(['POST'])
 def login_view(request):
     response = {}
@@ -59,3 +60,19 @@ def login_view(request):
         response['message'] = const.PARAMETER_MISSING_OR_INVALID_MESSAGE         
     
     return JsonResponse(response)
+
+
+
+@api_view(['POST'])
+def signup_view(request):
+    response = {}
+    data = json.loads(request.body)
+
+    try:
+        user = models.User.objects.create(**data)
+        response['message'] = 'User created successfully'
+        response['user_id'] = str(user.id)
+        return JsonResponse(response, status=201)
+    except Exception as e:
+        response['error'] = str(e)
+        return JsonResponse(response, status=400)
