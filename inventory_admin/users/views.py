@@ -15,6 +15,15 @@ from rest_framework.parsers import FileUploadParser, MultiPartParser
 from inventory_admin import constants as const
 from users import models
 
+import gspread
+# import mysql.connector
+from oauth2client.service_account import ServiceAccountCredentials
+
+# 1. Setup Google Sheets connection
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+credentials = ServiceAccountCredentials.from_json_keyfile_name('salesSheet.json', scope)
+gc = gspread.authorize(credentials)
+
 
 
 
@@ -76,3 +85,151 @@ def signup_view(request):
     except Exception as e:
         response['error'] = str(e)
         return JsonResponse(response, status=400)
+    
+    
+#--------------------------------------------------------------------------
+
+
+
+
+# 2. Open your Google Sheet
+
+@api_view(['POST'])
+def fetch_sf_view(request):
+    response = {}
+
+    try:
+        spreadsheet = gc.open('Report Datasets')
+        sheet = spreadsheet.worksheet("Projected Obsolescence (SF)")
+
+        records = sheet.get_all_records()
+        saved_items = []
+
+        for row in records:
+            # Check if item already exists
+            existing_item = models.InventoryItem.objects.filter(
+                warehouse=row.get('Warehouse'),
+                location=row.get('Location'),
+                item_number=row.get('Item #'),
+                lot_number=row.get('Lot #'),
+                expiration_date=row.get('Expiration Date')
+            ).first()
+
+            if existing_item:
+                # If exists, add existing item data to response, skip creating
+                saved_items.append({
+                    "id": existing_item.id,
+                    "warehouse": existing_item.warehouse,
+                    "location": existing_item.location,
+                    "item_name": existing_item.item_name,
+                    "lot_number": existing_item.lot_number,
+                    "expiration_date": existing_item.expiration_date,
+                    "uom": existing_item.uom,
+                    "quantity": existing_item.quantity,
+                    "price": str(existing_item.price),
+                    "value": str(existing_item.value)
+                })
+            else:
+                # Create new item
+                item = models.InventoryItem.objects.create(
+                    warehouse=row.get('Warehouse'),
+                    location=row.get('Location'),
+                    item_number=row.get('Item #'),
+                    item_name=row.get('Item Name'),
+                    lot_number=row.get('Lot #'),
+                    expiration_date=row.get('Expiration Date'),
+                    quantity=row.get('Qty'),
+                    uom=row.get('UOM'),
+                    price=row.get('PRICE'),
+                    value=row.get('VALUE'),
+                )
+                saved_items.append({
+                    "id": item.id,
+                    "warehouse": item.warehouse,
+                    "location": item.location,
+                    "item_name": item.item_name,
+                    "lot_number": item.lot_number,
+                    "expiration_date": item.expiration_date,
+                    "uom": item.uom,
+                    "quantity": item.quantity,
+                    "price": str(item.price),
+                    "value": str(item.value)
+                })
+
+        response['message'] = 'Inventory items saved and fetched successfully!'
+        response['data'] = saved_items
+        return JsonResponse(response, status=201)
+
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+
+
+@api_view(['POST'])
+def fetch_nc_view(request):
+    response = {}
+
+    try:
+        spreadsheet = gc.open('Report Datasets')
+        sheet = spreadsheet.worksheet("Projected Obsolescence (NC)")
+
+        records = sheet.get_all_records()
+        saved_items = []
+
+        for row in records:
+            # Check if item already exists
+            existing_item = models.InventoryItem.objects.filter(
+                warehouse=row.get('Warehouse'),
+                location=row.get('Location'),
+                item_number=row.get('Item #'),
+                lot_number=row.get('Lot #'),
+                expiration_date=row.get('Expiration Date')
+            ).first()
+
+            if existing_item:
+                # If exists, add existing item data to response, skip creating
+                saved_items.append({
+                    "id": existing_item.id,
+                    "warehouse": existing_item.warehouse,
+                    "location": existing_item.location,
+                    "item_name": existing_item.item_name,
+                    "lot_number": existing_item.lot_number,
+                    "expiration_date": existing_item.expiration_date,
+                    "uom": existing_item.uom,
+                    "quantity": existing_item.quantity,
+                    "price": str(existing_item.price),
+                    "value": str(existing_item.value)
+                })
+            else:
+                # Create new item
+                item = models.InventoryItem.objects.create(
+                    warehouse=row.get('Warehouse'),
+                    location=row.get('Location'),
+                    item_number=row.get('Item #'),
+                    item_name=row.get('Item Name'),
+                    lot_number=row.get('Lot #'),
+                    expiration_date=row.get('Expiration Date'),
+                    quantity=row.get('Qty'),
+                    uom=row.get('UOM'),
+                    price=row.get('PRICE'),
+                    value=row.get('VALUE'),
+                )
+                saved_items.append({
+                    "id": item.id,
+                    "warehouse": item.warehouse,
+                    "location": item.location,
+                    "item_name": item.item_name,
+                    "lot_number": item.lot_number,
+                    "expiration_date": item.expiration_date,
+                    "uom": item.uom,
+                    "quantity": item.quantity,
+                    "price": str(item.price),
+                    "value": str(item.value)
+                })
+
+        response['message'] = 'Inventory items saved and fetched successfully!'
+        response['data'] = saved_items
+        return JsonResponse(response, status=201)
+
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
