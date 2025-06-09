@@ -233,3 +233,23 @@ def fetch_nc_view(request):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+    
+    
+import jwt
+import datetime
+EmbedSecret = "I7owoLniyj78kABxyaGe4BMNYoVMpE06"
+    
+@api_view(['GET'])
+def embed_token_view(request):
+    payload = {
+        'embed_user_email': 'viraj@cresitatech.com',  # your Bold BI user email
+        'embed_user_name': 'viraj@cresitatech.com',   # any name
+        'iss': 'embed',
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+    }
+    token = jwt.encode(payload, EmbedSecret, algorithm='HS256')
+    return JsonResponse({'token': token})
+
+    
+    
+    
