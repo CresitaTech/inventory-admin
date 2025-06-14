@@ -17,12 +17,12 @@ from users import models
 
 import gspread
 # import mysql.connector
-from oauth2client.service_account import ServiceAccountCredentials
+# from oauth2client.service_account import ServiceAccountCredentials
 
-# 1. Setup Google Sheets connection
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-credentials = ServiceAccountCredentials.from_json_keyfile_name('salesSheet.json', scope)
-gc = gspread.authorize(credentials)
+# # 1. Setup Google Sheets connection
+# scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+# credentials = ServiceAccountCredentials.from_json_keyfile_name('salesSheet.json', scope)
+# gc = gspread.authorize(credentials)
 
 
 

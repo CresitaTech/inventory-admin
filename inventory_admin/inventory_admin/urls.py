@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from inventory.views import OnHandBalanceReportView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/users/', include('users.urls')), 
+    path('onhand-balance-reports/', OnHandBalanceReportView.as_view(), name='upload-excel'),
 ]
+
