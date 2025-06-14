@@ -99,3 +99,9 @@ class OnHandBalanceReportView(APIView):
             'skipped': skipped,
             'data': serializer.data
         })
+        
+from rest_framework.generics import ListAPIView
+
+class FetchOnHandBalanceReportView(ListAPIView):
+    queryset = OnHandBalanceReport.objects.all()
+    serializer_class = OnHandBalanceReportSerializer
