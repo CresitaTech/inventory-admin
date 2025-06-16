@@ -17,9 +17,9 @@ class OnHandBalanceReportView(APIView):
             return Response({'error': 'No file uploaded.'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            df = pd.read_excel(file)
+            df = pd.read_excel(file, sheet_name="On Hand Balance report")
         except Exception as e:
-            return Response({'error': f'Failed to read Excel file. {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Sheet "On Hand Balance report" not found in the Excel file.'}, status=status.HTTP_400_BAD_REQUEST)
         
         # Clean column names
         df.columns = [col.strip() for col in df.columns]
