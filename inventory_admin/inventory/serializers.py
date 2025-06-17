@@ -13,3 +13,22 @@ class OnHandBalanceReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = OnHandBalanceReport
         fields = '__all__'
+        
+        
+
+from rest_framework import serializers
+from .models import ProjectedObsolescence
+
+class ProjectedObsolescenceSerializer(serializers.ModelSerializer):
+    type = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ProjectedObsolescence
+        fields = '__all__'  
+
+    def get_type(self, obj):
+        if obj.warehouse.startswith('SF'):
+            return 'SF'
+        elif obj.warehouse.startswith('NC'):
+            return 'NC'
+        return ''

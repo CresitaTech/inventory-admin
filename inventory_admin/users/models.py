@@ -68,20 +68,20 @@ class User(AbstractUser):
     
     
     
-class InventoryItem(models.Model):
-    warehouse = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
-    item_number = models.CharField(max_length=255)
-    item_name = models.CharField(max_length=255)
-    lot_number = models.CharField(max_length=100)
-    expiration_date = models.CharField(max_length=20)
-    quantity = models.FloatField()
-    uom = models.CharField(max_length=20)  # UOM = Unit of Measure
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    value = models.DecimalField(max_digits=12, decimal_places=2)
+# class InventoryItem(models.Model):
+#     warehouse = models.CharField(max_length=100)
+#     location = models.CharField(max_length=100)
+#     item_number = models.CharField(max_length=255)
+#     item_name = models.CharField(max_length=255)
+#     lot_number = models.CharField(max_length=100)
+#     expiration_date = models.CharField(max_length=20)
+#     quantity = models.FloatField()
+#     uom = models.CharField(max_length=20)  # UOM = Unit of Measure
+#     price = models.DecimalField(max_digits=10, decimal_places=2)
+#     value = models.DecimalField(max_digits=12, decimal_places=2)
 
-    # def __str__(self):
-    #     return f"{self.item_name} - {self.lot_number}"
+#     # def __str__(self):
+#     #     return f"{self.item_name} - {self.lot_number}"
     
-    class Meta:
-        db_table = 'inventory_items'  
+#     class Meta:
+#         db_table = 'inventory_items'  
