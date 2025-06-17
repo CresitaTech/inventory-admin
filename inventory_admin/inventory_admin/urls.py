@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from inventory.views import OnHandBalanceReportView, FetchOnHandBalanceReportView, ProjectedObsolescenceView
+from inventory.views import OnHandBalanceReportView, FetchOnHandBalanceReportView, ProjectedObsolescenceView, CycleCountView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,7 @@ urlpatterns = [
     path('get-onhand-reports/', FetchOnHandBalanceReportView.as_view(), name='onhand-report'),
     path('projected-obsolescence/', ProjectedObsolescenceView.as_view(), name='projected-obsolescence'),
     path('get-projected-obsolescence/', ProjectedObsolescenceView.as_view(), name='projected-obsolescence-list'),
+    path('cycle-counts-upload/', CycleCountView.as_view(), name='cycle-counts-upload'),
+     path('cycle-counts/', CycleCountView.as_view(), name='cycle-count-list'),
 ]
 

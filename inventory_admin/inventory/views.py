@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import OnHandBalanceReport
-from .serializers import OnHandBalanceReportSerializer
+from .serializers import OnHandBalanceReportSerializer, CycleCountSerializer
 from io import BytesIO
 
 class OnHandBalanceReportView(APIView):
@@ -219,3 +219,102 @@ class ProjectedObsolescenceView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     
+from .models import CycleCount
+from decimal import Decimal, InvalidOperation
+    
+class CycleCountView(APIView):
+    def post(self, request):
+        file = request.FILES.get('file')
+
+        if not file:
+            return Response({"error": "No file uploaded."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            xl = pd.ExcelFile(file)
+            if "Cycle Count" not in xl.sheet_names:
+                return Response({"error": "Sheet 'Cycle Count' not found."}, status=status.HTTP_400_BAD_REQUEST)
+
+            df = xl.parse("Cycle Count")
+        except Exception as e:
+            return Response({"error": f"Failed to read sheet: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
+
+        df.columns = [col.strip() for col in df.columns]
+
+        required_columns = [
+            'Cycle Count #', 'Warehouse', 'Number of lines', 'Total Value',
+            'Currency', 'Created By', 'Created Date', 'Discrepancy Lines',
+            'Status', '%'
+        ]
+        for col in required_columns:
+            if col not in df.columns:
+                return Response({"error": f"Missing column: {col}"}, status=status.HTTP_400_BAD_REQUEST)
+
+        inserted, skipped = 0, 0
+        all_valid = []
+
+        for _, row in df.iterrows():
+            try:
+                def to_decimal(val):
+                    try:
+                        return Decimal(str(val).replace(',', '').strip())
+                    except (InvalidOperation, TypeError):
+                        return Decimal('0')
+
+                # Just strip the '%' sign, nothing else
+                # percentage_raw = str(row.get('%', '0')).replace('%', '').strip()
+                # percentage_val = to_decimal(percentage_raw)
+                # print(percentage_val)
+                value  = row.get('%', '0')
+                percentage_val = value * 100
+                # break
+
+                cycle_count_val = to_decimal(row['Cycle Count #'])
+                number_of_lines_val = to_decimal(row['Number of lines'])
+                total_value_val = to_decimal(row['Total Value'])
+                discrepancy_lines_val = to_decimal(row['Discrepancy Lines'])
+
+                exists = CycleCount.objects.filter(
+                    warehouse=row['Warehouse'],
+                    number_of_lines=number_of_lines_val,
+                    total_value=total_value_val,
+                    currency=row['Currency'],
+                    created_by=row['Created By'],
+                    created_date=row['Created Date'],
+                    discrepancy_lines=discrepancy_lines_val,
+                    status=row['Status'],
+                ).exists()
+
+                if not exists:
+                    record = CycleCount.objects.create(
+                        cycle_count=cycle_count_val,
+                        warehouse=row['Warehouse'],
+                        number_of_lines=number_of_lines_val,
+                        total_value=total_value_val,
+                        currency=row['Currency'],
+                        created_by=row['Created By'],
+                        created_date=row['Created Date'],
+                        discrepancy_lines=discrepancy_lines_val,
+                        status=row['Status'],
+                        percentage=percentage_val
+                    )
+                    inserted += 1
+                    all_valid.append(record)
+                    # break
+                else:
+                    skipped += 1
+
+            except Exception as e:
+                skipped += 1
+                continue
+
+        serializer = CycleCountSerializer(all_valid, many=True)
+        return Response({
+            "inserted": inserted,
+            "skipped": skipped,
+            "data": serializer.data
+        }, status=status.HTTP_200_OK)
+        
+    def get(self, request):
+        records = CycleCount.objects.all()
+        serializer = CycleCountSerializer(records, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

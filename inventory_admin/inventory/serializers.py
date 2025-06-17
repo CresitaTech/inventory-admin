@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import OnHandBalanceReport
+from .models import OnHandBalanceReport, ProjectedObsolescence, CycleCount
 
 class OnHandBalanceReportSerializer(serializers.ModelSerializer):
     quantity = serializers.IntegerField()
@@ -14,10 +14,6 @@ class OnHandBalanceReportSerializer(serializers.ModelSerializer):
         model = OnHandBalanceReport
         fields = '__all__'
         
-        
-
-from rest_framework import serializers
-from .models import ProjectedObsolescence
 
 class ProjectedObsolescenceSerializer(serializers.ModelSerializer):
     type = serializers.SerializerMethodField()
@@ -31,7 +27,22 @@ class ProjectedObsolescenceSerializer(serializers.ModelSerializer):
 
     def get_type(self, obj):
         if obj.warehouse.startswith('SF'):
-            return 'SF'
+            return 'SSF'
         elif obj.warehouse.startswith('NC'):
             return 'NC'
         return ''
+    
+from decimal import Decimal
+class CycleCountSerializer(serializers.ModelSerializer):
+    accuracy_percentage = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CycleCount
+        fields = '__all__'  # or list them manually if needed
+        read_only_fields = ['accuracy_percentage']
+
+    def get_accuracy_percentage(self, obj):
+        try:
+            return float(Decimal('100') - obj.percentage)
+        except:
+            return None

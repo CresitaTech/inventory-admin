@@ -54,3 +54,26 @@ class ProjectedObsolescence(models.Model):
         db_table = 'projected_obsolescence'
         verbose_name = "Projected Obsolescence"
         verbose_name_plural = 'Projected Obsolescences'
+        
+        
+    
+class CycleCount(models.Model):
+    cycle_count = models.DecimalField(max_digits=19, decimal_places=0)
+    warehouse = models.CharField(max_length=100)
+    number_of_lines = models.DecimalField(max_digits=19, decimal_places=0)
+    total_value = models.DecimalField(max_digits=19, decimal_places=6)
+    currency = models.CharField(max_length=255)
+    created_by = models.CharField(max_length=100)
+    created_date = models.CharField(max_length=20)
+    discrepancy_lines = models.DecimalField(max_digits=19, decimal_places=0)
+    status = models.CharField(max_length=20)  # UOM = Unit of Measure
+    percentage = models.DecimalField(max_digits=10, decimal_places=6, null=True, blank=True)
+
+    # def __str__(self):
+    #     return f"{self.item_name} - {self.lot_number}"
+    
+        
+    class Meta:
+        db_table = 'cycle_count'
+        verbose_name = "Cycle Count"
+        verbose_name_plural = 'Cycle Counts'
