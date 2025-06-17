@@ -35,14 +35,23 @@ class ProjectedObsolescenceSerializer(serializers.ModelSerializer):
 from decimal import Decimal
 class CycleCountSerializer(serializers.ModelSerializer):
     accuracy_percentage = serializers.SerializerMethodField()
+    location = serializers.SerializerMethodField()
+    percentage = serializers.IntegerField()
 
     class Meta:
         model = CycleCount
         fields = '__all__'  # or list them manually if needed
         read_only_fields = ['accuracy_percentage']
+        
+    def get_location(self, obj):
+        if obj.warehouse.startswith('SF'):
+            return 'SSF'
+        elif obj.warehouse.startswith('NC'):
+            return 'NC'
+        return ''
 
     def get_accuracy_percentage(self, obj):
         try:
-            return float(Decimal('100') - obj.percentage)
+            return int(Decimal('100') - obj.percentage)
         except:
             return None
