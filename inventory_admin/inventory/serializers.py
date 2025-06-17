@@ -21,6 +21,9 @@ from .models import ProjectedObsolescence
 
 class ProjectedObsolescenceSerializer(serializers.ModelSerializer):
     type = serializers.SerializerMethodField()
+    price = serializers.FloatField()
+    value = serializers.FloatField()
+    quantity = serializers.IntegerField()
 
     class Meta:
         model = ProjectedObsolescence
