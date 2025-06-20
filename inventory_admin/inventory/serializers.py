@@ -55,3 +55,24 @@ class CycleCountSerializer(serializers.ModelSerializer):
             return int(Decimal('100') - obj.percentage)
         except:
             return None
+        
+from .models import CarryingCost
+class CarryingCostSerializer(serializers.ModelSerializer):
+    location = serializers.SerializerMethodField()
+    damage = serializers.FloatField()
+    storage = serializers.FloatField()
+    total_inventory_value = serializers.FloatField()
+    handling = serializers.FloatField()
+    loss = serializers.FloatField()
+    
+
+    class Meta:
+        model = CarryingCost
+        fields = '__all__'  
+
+    def get_location(self, obj):
+        if obj.warehouse.startswith('SF'):
+            return 'SSF'
+        elif obj.warehouse.startswith('NC'):
+            return 'NC'
+        return ''

@@ -318,3 +318,71 @@ class CycleCountView(APIView):
         records = CycleCount.objects.all()
         serializer = CycleCountSerializer(records, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
+from .models import CarryingCost
+
+class CarryingCostView(APIView):
+    def post(self, request):
+        file = request.FILES.get('file')
+        
+        if not file:
+            return Response({"error": "No file uploaded."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            # Read the Excel file and target the specific sheet
+            df = pd.read_excel(file, sheet_name="Inventory carrying cost")
+        except Exception as e:
+            return Response({"error": f"Error reading Excel file: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        required_columns = [
+            'Warehouse', 'Storage', 'Total Inventory Value', 
+            'Date', 'Handling', 'Loss', 'Damage'
+        ]
+
+        # Check if all required columns are present
+        # if not all(col in df.columns for col in required_columns):
+        #     return Response({"error": "Missing required columns in the sheet."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        inserted_records = []
+
+        for _, row in df.iterrows():
+            # Clean row values
+            print("roww", row)
+            data = {
+                'warehouse': row['Warehouse'],
+                'storage': row['Storage'],
+                'total_inventory_value': row['Total Inventory Value'],
+                'date': str(row['Date']),
+                'handling': row['Handling'],
+                'loss': row.get('Loss'),
+                'damage': row.get('Damage') 
+            }
+
+            # Check for duplicates based on all fields
+            if not CarryingCost.objects.filter(
+                warehouse=data['warehouse'],
+                storage=data['storage'],
+                total_inventory_value=data['total_inventory_value'],
+                date=data['date'],
+                handling=data['handling'],
+                loss=data['loss'],
+                damage=data['damage']
+            ).exists():
+                obj = CarryingCost.objects.create(**data)
+                inserted_records.append({
+                    'id': obj.id,
+                    **data
+                })
+
+        return Response({
+            "inserted_count": len(inserted_records),
+            "inserted_data": inserted_records
+        }, status=status.HTTP_201_CREATED)
+        
+   
+    def get(self, request):
+        from .serializers import CarryingCostSerializer
+        records = CarryingCost.objects.all()
+        serializer = CarryingCostSerializer(records, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

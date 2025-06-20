@@ -77,3 +77,19 @@ class CycleCount(models.Model):
         db_table = 'cycle_count'
         verbose_name = "Cycle Count"
         verbose_name_plural = 'Cycle Counts'
+        
+        
+class CarryingCost(models.Model):
+    warehouse = models.CharField(max_length=100)
+    storage = models.DecimalField(max_digits=19, decimal_places=4)
+    total_inventory_value = models.DecimalField(max_digits=19, decimal_places=4)
+    date = models.CharField(max_length=20)
+    handling = models.DecimalField(max_digits=19, decimal_places=0)
+    loss = models.DecimalField(max_digits=10, decimal_places=4, null=True, blank=True) 
+    damage = models.DecimalField(max_digits=10, decimal_places=4, null=True, blank=True)
+    
+        
+    class Meta:
+        db_table = 'carrying_cost'
+        verbose_name = "Carrying Cost"
+        verbose_name_plural = 'Carrying Costs'
