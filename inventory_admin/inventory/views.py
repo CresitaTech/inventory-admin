@@ -404,7 +404,7 @@ class InventoryOutstandingView(APIView):
         
         required_columns = [
             'Warehouse', 'Type', 'Active', 
-            'Inventory Outstanding'
+            'Inventory Outstanding', 'Date'
         ]
 
         # Check if all required columns are present
@@ -420,7 +420,8 @@ class InventoryOutstandingView(APIView):
                 'warehouse': row['Warehouse'],
                 'type': row['Type'],
                 'active': row['Active'],
-                'inventory_outstanding': row['Inventory Outstanding']
+                'inventory_outstanding': row['Inventory Outstanding'],
+                'date': row['Date']
             }
 
             # Check for duplicates based on all fields

@@ -100,9 +100,23 @@ class InventoryOutstanding(models.Model):
     type = models.CharField(max_length=100)
     active = models.CharField(max_length=100)
     inventory_outstanding = models.IntegerField()
+    date = models.CharField(max_length=20, null=True, blank=True)
     
         
     class Meta:
         db_table = 'inventory_outstanding'
         verbose_name = "Inventory Outstanding"
         verbose_name_plural = 'Inventory Outstandings'
+        
+        
+# class InventoryOutstanding(models.Model):
+#     warehouse = models.CharField(max_length=100)
+#     type = models.CharField(max_length=100)
+#     active = models.CharField(max_length=100)
+#     inventory_outstanding = models.IntegerField()
+    
+        
+#     class Meta:
+#         db_table = 'inventory_outstanding'
+#         verbose_name = "Inventory Outstanding"
+#         verbose_name_plural = 'Inventory Outstandings'
