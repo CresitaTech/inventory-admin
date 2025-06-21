@@ -5,7 +5,7 @@ import pandas as pd
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import OnHandBalanceReport
+from .models import OnHandBalanceReport, PaidInvoices
 from .serializers import OnHandBalanceReportSerializer, CycleCountSerializer
 from io import BytesIO
 
@@ -64,6 +64,7 @@ class OnHandBalanceReportView(APIView):
                 quantity=row.get("quantity"),
                 available=row.get("available")
             ).exists()
+            print()
 
             if not exists:
                 OnHandBalanceReport.objects.create(
@@ -446,5 +447,76 @@ class InventoryOutstandingView(APIView):
         records = InventoryOutstanding.objects.all()
         serializer = InventoryOutstandingSerializer(records, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+
+
+class PaidInvoicesView(APIView):
+    def post(self, request):
+        file = request.FILES.get('file')
+        if not file:
+            return Response({'error': 'No file uploaded.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            df = pd.read_excel(file, sheet_name='Raw Data')
+
+            # Standardize column names (strip whitespace)
+            df.columns = df.columns.str.strip()
+
+            inserted_records = []
+            count = 0
+            total_rows = len(df)
+            for _, row in df.iterrows():
+                invoice_id = int(row.get('Invoice ID'))
+
+                if PaidInvoices.objects.filter(invoice_id=invoice_id).exists():
+                    continue  # Skip duplicates
+
+                record = PaidInvoices.objects.create(
+                    po_number=str(row.get('PO Number', '')).strip(),
+                    req_number=str(row.get('Req #', '')).strip(),
+                    contract_punchout_user=str(row.get('Contract/Punchout/User', '')).strip(),
+                    invoice_id=invoice_id,
+                    invoice_number=str(row.get('Invoice #', '')).strip(),
+                    invoice_date=str(row.get('Invoice Date', '')).strip(),
+                    supplier=str(row.get('Supplier', '')).strip(),
+                    total=row.get('Total') or 0.00,
+                    payment_term=str(row.get('Payment Term', '')).strip(),
+                    status=str(row.get('Status', '')).strip(),
+                    requester=str(row.get('Requester', '')).strip(),
+                    current_approver=str(row.get('Current Approver', '')).strip(),
+                    date_received=str(row.get('Date Received', '')).strip(),
+                    created_date=str(row.get('Created Date', '')).strip(),
+                    net_due_date=str(row.get('Net Due Date', '')).strip(),
+                    discount_due_date=str(row.get('Discount Due Date', '')).strip(),
+                    payment_date=str(row.get('Payment Date', '')).strip(),
+                    epd_potential=str(row.get('EPD Potential', '')).strip(),
+                    delivery_method=str(row.get('Delivery Method', '')).strip(),
+                    pricing_bucket=str(row.get('Pricing Bucket', '')).strip(),
+                )
+
+                inserted_records.append({
+                    'invoice_id': record.invoice_id,
+                    'supplier': record.supplier,
+                    'total': str(record.total)
+                })
+                
+                count += 1
+                if count % 500 == 0 or count == total_rows:
+                    print(f"[INFO] Inserted {count}/{total_rows} records...")
+
+            return Response({
+                'message': f'{len(inserted_records)} records inserted.',
+                'inserted': inserted_records
+            }, status=status.HTTP_201_CREATED)
+
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
-   
+        
+
+    def get(self, request):
+        from .serializers import PaidInvoicesSerializer
+        invoices = PaidInvoices.objects.all()
+        serializer = PaidInvoicesSerializer(invoices, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

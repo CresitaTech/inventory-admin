@@ -56,7 +56,7 @@ class CycleCountSerializer(serializers.ModelSerializer):
         except:
             return None
         
-from .models import CarryingCost, InventoryOutstanding
+from .models import CarryingCost, InventoryOutstanding, PaidInvoices
 class CarryingCostSerializer(serializers.ModelSerializer):
     location = serializers.SerializerMethodField()
     damage = serializers.FloatField()
@@ -91,3 +91,9 @@ class InventoryOutstandingSerializer(serializers.ModelSerializer):
         elif obj.warehouse.startswith('NC'):
             return 'NC'
         return ''
+    
+
+class PaidInvoicesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaidInvoices
+        fields = '__all__'

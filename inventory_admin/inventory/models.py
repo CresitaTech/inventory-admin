@@ -109,14 +109,31 @@ class InventoryOutstanding(models.Model):
         verbose_name_plural = 'Inventory Outstandings'
         
         
-# class InventoryOutstanding(models.Model):
-#     warehouse = models.CharField(max_length=100)
-#     type = models.CharField(max_length=100)
-#     active = models.CharField(max_length=100)
-#     inventory_outstanding = models.IntegerField()
-    
-        
-#     class Meta:
-#         db_table = 'inventory_outstanding'
-#         verbose_name = "Inventory Outstanding"
-#         verbose_name_plural = 'Inventory Outstandings'
+class PaidInvoices(models.Model):
+    po_number = models.CharField(max_length=100)
+    req_number = models.CharField(max_length=100)
+    contract_punchout_user = models.CharField(max_length=255)
+    invoice_id = models.IntegerField()
+    invoice_number = models.CharField(max_length=100)
+    invoice_date = models.CharField(max_length=100)
+    supplier = models.CharField(max_length=255)
+    total = models.DecimalField(max_digits=19, decimal_places=2)
+    payment_term = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
+    requester = models.CharField(max_length=100)
+    current_approver = models.CharField(max_length=100)
+    date_received = models.CharField(max_length=100)
+    created_date = models.CharField(max_length=100)
+    net_due_date = models.CharField(max_length=100)
+    discount_due_date = models.CharField(max_length=100)
+    payment_date = models.CharField(max_length=100)
+    epd_potential = models.CharField(max_length=100)
+    delivery_method = models.CharField(max_length=100)
+    pricing_bucket = models.CharField(max_length=100)
+
+
+    class Meta:
+        db_table = 'paid_invoices'
+        verbose_name = "Paid Invoice"
+        verbose_name_plural = 'Paid Invoices'
+
