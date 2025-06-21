@@ -94,6 +94,8 @@ class InventoryOutstandingSerializer(serializers.ModelSerializer):
     
 
 class PaidInvoicesSerializer(serializers.ModelSerializer):
+    total = serializers.FloatField()
+    
     class Meta:
         model = PaidInvoices
         fields = '__all__'
