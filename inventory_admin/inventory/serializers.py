@@ -5,8 +5,8 @@ class OnHandBalanceReportSerializer(serializers.ModelSerializer):
     quantity = serializers.IntegerField()
     allocated = serializers.IntegerField()
     available = serializers.IntegerField()
-    bin = serializers.IntegerField()
-    level = serializers.IntegerField()
+    # bin = serializers.IntegerField()
+    # level = serializers.IntegerField()
     price = serializers.FloatField()
     value = serializers.FloatField()
 

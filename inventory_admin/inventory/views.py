@@ -8,6 +8,7 @@ from rest_framework import status
 from .models import OnHandBalanceReport, PaidInvoices
 from .serializers import OnHandBalanceReportSerializer, CycleCountSerializer
 from io import BytesIO
+import math
 
 class OnHandBalanceReportView(APIView):
     def post(self, request):
@@ -18,89 +19,81 @@ class OnHandBalanceReportView(APIView):
 
         try:
             df = pd.read_excel(file, sheet_name="On Hand Balance report")
-        except Exception as e:
+        except Exception:
             return Response({'error': 'Sheet "On Hand Balance report" not found in the Excel file.'}, status=status.HTTP_400_BAD_REQUEST)
-        
-        # Clean column names
+
         df.columns = [col.strip() for col in df.columns]
 
-        column_map = {
-            'Item Number': 'item_number',
-            'Location': 'location',
-            'Warehouse': 'warehouse',
-            'Type': 'type',
-            'Created By': 'created_by',
-            'Currency' : 'currency',
-            'Commodity': 'Commodity',
-            'GL Account': 'gl_acount',
-            'Name': 'name',
-            'Storage On Hand': 'storage_on_hand',
-            'Quantity': 'quantity',
-            'Allocated': 'allocated',
-            'Available': 'available',
-            'UOM': 'uom',
-            'Price': 'price',
-            'Value': 'value',
-            'Aisle': 'aisle',
-            'Bin': 'bin',
-            'Level': 'level',
-        }
+        # Ensure numeric fields are clean
+        # numeric_fields = ['Quantity', 'Allocated', 'Available', 'Price', 'Value']
+        # for field in numeric_fields:
+        #     df[field] = pd.to_numeric(df.get(field), errors='coerce').fillna(0)
 
-        df.rename(columns=column_map, inplace=True)
-
+        new_objects = []
         inserted = 0
         skipped = 0
-        
-        numeric_fields = ['quantity', 'allocated', 'available', 'price', 'value']
-        for field in numeric_fields:
-            df[field] = pd.to_numeric(df[field], errors='coerce').fillna(0)
 
         for _, row in df.iterrows():
-            # Basic duplicate check (adjust fields as per your logic)
-            exists = OnHandBalanceReport.objects.filter(
-                item_number=row.get("item_number"),
-                location=row.get("location"),
-                warehouse=row.get("warehouse"),
-                quantity=row.get("quantity"),
-                available=row.get("available")
-            ).exists()
-            print()
+            data = {
+                'warehouse': str(row['Warehouse']).strip(),
+                'location': str(row['Location']).strip(),
+                'quantity': float(row['Quantity']) if pd.notna(row['Quantity']) else 0.0,
+                'item_number': str(row['Item Number']).strip(),
+                'available': float(row['Available']) if pd.notna(row['Available']) else 0.0,
+                "value": float(row['Value']) if pd.notna(row['Value']) else 0.0,
+                'price': float(row['Price']) if pd.notna(row['Price']) else 0.0,
+            }
 
-            if not exists:
-                OnHandBalanceReport.objects.create(
-                    item_number=row.get("item_number", ""),
-                    location=row.get("location", ""),
-                    warehouse=row.get("warehouse", ""),
-                    type=row.get("type", ""),
-                    currency=row.get("currency", ""),
+            # Check for duplicates based on all fields
+            if not OnHandBalanceReport.objects.filter(
+                warehouse=data['warehouse'],
+                location=data['location'],
+                item_number=data['item_number'],
+                quantity=data['quantity'],
+                available=data['available'], 
+                value=data['value'], 
+                price=data['price'], 
+                
+            ).exists():
+
+                new_objects.append(OnHandBalanceReport(
+                    item_number=row.get("Item Number", ""),
+                    location=row.get("Location", ""),
+                    warehouse=row.get("Warehouse", ""),
+                    type=row.get("Type", ""),
+                    currency=row.get("Currency", ""),
                     Commodity=row.get("Commodity", ""),
-                    name=row.get("name", ""),
-                    gl_acount=row.get("gl_acount", ""),
-                    storage_on_hand=row.get("storage_on_hand", ""),
-                    quantity=row.get("quantity", 0),
-                    allocated=row.get("allocated", 0),
-                    available=row.get("available", 0),
-                    uom=row.get("uom", ""),
-                    price=row.get("price", 0),
-                    value=row.get("value", 0),
-                    aisle=row.get("aisle", ""),
-                    bin=row.get("bin", 0),
-                    level=row.get("level", 0),
-                    created_by=row.get("created_by", ""),
-                )
+                    name=row.get("Name", ""),
+                    gl_acount=float(row.get("GL Account", 0)) if pd.notna(row.get("GL Account", 0)) else 0.0,
+                    storage_on_hand=row.get("Storage On Hand", ""),
+                    quantity=float(row.get("Quantity", 0)) if pd.notna(row.get("Quantity", 0)) else 0.0,
+                    allocated=float(row.get("Allocated", 0)) if pd.notna(row.get("Allocated", 0)) else 0.0,
+                    available=float(row.get("Available", 0)) if pd.notna(row.get("Available", 0)) else 0.0,
+                    uom=row.get("UOM", ""),
+                    price = row.get("Price", ""),
+                    value=float(row.get("Value", 0)) if pd.notna(row.get("Value", 0)) else 0.0,
+                    aisle=row.get("Aisle", ""),
+                    bin=row.get("Bin", ""),
+                    level=row.get("Level", ""),
+                    created_by=row.get("Created By", ""),
+                ))
                 inserted += 1
+                # break
             else:
                 skipped += 1
+        # print("all_data", new_objects)
 
-        # Return all data
-        records = OnHandBalanceReport.objects.all()
-        serializer = OnHandBalanceReportSerializer(records, many=True)
+        OnHandBalanceReport.objects.bulk_create(new_objects, batch_size=1000)
+
+        serializer = OnHandBalanceReportSerializer(OnHandBalanceReport.objects.all(), many=True)
+
         return Response({
             'inserted': inserted,
             'skipped': skipped,
             'data': serializer.data
         })
-        
+
+
 from rest_framework.generics import ListAPIView
 
 class FetchOnHandBalanceReportView(ListAPIView):
@@ -415,8 +408,6 @@ class InventoryOutstandingView(APIView):
         inserted_records = []
 
         for _, row in df.iterrows():
-            # Clean row values
-            print("roww", row)
             data = {
                 'warehouse': row['Warehouse'],
                 'type': row['Type'],
