@@ -1,0 +1,1423 @@
+[2025-06-30 21:38:20,253: INFO/MainProcess] beat: Starting...
+[2025-06-30 21:39:38,368: ERROR/MainProcess] Database gave error: OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)')
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 289, in _set_autocommit
+    self.connection.autocommit(autocommit)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 447, in autocommit
+    self._send_autocommit_mode()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 468, in _send_autocommit_mode
+    self._read_ok_packet()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 453, in _read_ok_packet
+    pkt = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 271, in connect
+    self.set_autocommit(self.settings_dict["AUTOCOMMIT"])
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 494, in set_autocommit
+    self._set_autocommit(autocommit)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 288, in _set_autocommit
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 289, in _set_autocommit
+    self.connection.autocommit(autocommit)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 447, in autocommit
+    self._send_autocommit_mode()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 468, in _send_autocommit_mode
+    self._read_ok_packet()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 453, in _read_ok_packet
+    pkt = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)')
+[2025-06-30 21:39:41,415: ERROR/MainProcess] Database gave error: OperationalError(2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10051] A socket operation was attempted to an unreachable network)")
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+        (self.host, self.port), self.connect_timeout, **kwargs
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [WinError 10051] A socket operation was attempted to an unreachable network
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10051] A socket operation was attempted to an unreachable network)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10051] A socket operation was attempted to an unreachable network)")
+[2025-06-30 21:39:41,465: ERROR/MainProcess] Database gave error: OperationalError(2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10051] A socket operation was attempted to an unreachable network)")
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+        (self.host, self.port), self.connect_timeout, **kwargs
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [WinError 10051] A socket operation was attempted to an unreachable network
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10051] A socket operation was attempted to an unreachable network)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10051] A socket operation was attempted to an unreachable network)")
+[2025-06-30 21:39:46,492: ERROR/MainProcess] Database gave error: OperationalError(2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10051] A socket operation was attempted to an unreachable network)")
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+        (self.host, self.port), self.connect_timeout, **kwargs
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [WinError 10051] A socket operation was attempted to an unreachable network
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10051] A socket operation was attempted to an unreachable network)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10051] A socket operation was attempted to an unreachable network)")
+[2025-06-30 21:40:01,514: ERROR/MainProcess] Database gave error: OperationalError(2003, "Can't connect to MySQL server on '164.68.100.175' (timed out)")
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+        (self.host, self.port), self.connect_timeout, **kwargs
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' (timed out)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' (timed out)")
+[2025-06-30 21:40:12,821: ERROR/MainProcess] Database gave error: OperationalError(2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10053] An established connection was aborted by the software in your host machine)")
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+        (self.host, self.port), self.connect_timeout, **kwargs
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10053] An established connection was aborted by the software in your host machine)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on '164.68.100.175' ([WinError 10053] An established connection was aborted by the software in your host machine)")
+[2025-06-30 21:54:37,540: INFO/MainProcess] beat: Starting...
+[2025-06-30 22:17:04,257: ERROR/MainProcess] Database gave error: OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+[2025-06-30 22:17:18,903: ERROR/MainProcess] Database gave error: OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+[2025-06-30 22:17:33,661: ERROR/MainProcess] Database gave error: OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+[2025-06-30 22:17:49,551: ERROR/MainProcess] Database gave error: OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+[2025-06-30 22:18:03,829: ERROR/MainProcess] Database gave error: OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+[2025-06-30 22:18:15,108: ERROR/MainProcess] Database gave error: OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+[2025-06-30 22:18:41,404: ERROR/MainProcess] Database gave error: InternalError('Packet sequence number wrong - got 1 expected 2')
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 669, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 957, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 757, in _read_packet
+    raise err.InternalError(
+    ...<2 lines>...
+    )
+pymysql.err.InternalError: Packet sequence number wrong - got 1 expected 2
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 669, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 957, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 757, in _read_packet
+    raise err.InternalError(
+    ...<2 lines>...
+    )
+django.db.utils.InternalError: Packet sequence number wrong - got 1 expected 2
+[2025-06-30 22:18:54,972: ERROR/MainProcess] Database gave error: OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\schedulers.py", line 417, in schedule_changed
+    last, ts = self._last_timestamp, self.Changes.last_change()
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django_celery_beat\models.py", line 427, in last_change
+    return cls.objects.get(ident=1).last_update
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1558, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 289, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\mysql\base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 668, in connect
+    self._get_server_information()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 1098, in _get_server_information
+    packet = self._read_packet()
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+    ...<2 lines>...
+    )
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] An existing connection was forcibly closed by the remote host)')

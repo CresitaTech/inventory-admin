@@ -1,0 +1,6 @@
+celery -A inventory_admin worker --loglevel=DEBUG -P solo
+celery -A inventory_admin beat --loglevel=DEBUG
+
+
+from inventory.tasks import run_fetch_inventory
+run_fetch_inventory.delay()

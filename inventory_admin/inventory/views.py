@@ -245,6 +245,8 @@ class CycleCountView(APIView):
 
         inserted, skipped = 0, 0
         all_valid = []
+        count = 0
+        total_rows = len(df)
 
         for _, row in df.iterrows():
             try:
@@ -254,49 +256,49 @@ class CycleCountView(APIView):
                     except (InvalidOperation, TypeError):
                         return Decimal('0')
 
-                # Just strip the '%' sign, nothing else
-                # percentage_raw = str(row.get('%', '0')).replace('%', '').strip()
-                # percentage_val = to_decimal(percentage_raw)
-                # print(percentage_val)
                 value  = row.get('%', '0')
                 percentage_val = value * 100
                 # break
 
-                cycle_count_val = to_decimal(row['Cycle Count #'])
-                number_of_lines_val = to_decimal(row['Number of lines'])
-                total_value_val = to_decimal(row['Total Value'])
-                discrepancy_lines_val = to_decimal(row['Discrepancy Lines'])
+                cycle_count_val = to_decimal(row.get('Cycle Count #', 0))
+                number_of_lines_val = to_decimal(row.get('Number of lines', 0))
+                total_value_val = to_decimal(row.get('Total Value', 0))
+                discrepancy_lines_val = to_decimal(row.get('Discrepancy Lines', 0))
 
                 exists = CycleCount.objects.filter(
-                    warehouse=row['Warehouse'],
+                    warehouse=row.get('Warehouse', ''),
                     number_of_lines=number_of_lines_val,
                     total_value=total_value_val,
-                    currency=row['Currency'],
-                    created_by=row['Created By'],
-                    created_date=row['Created Date'],
-                    discrepancy_lines=discrepancy_lines_val,
-                    status=row['Status'],
+                    currency=row.get('Currency', ''),
+                    created_by=row.get('Created By', ''),
+                    created_date=row.get('Created Date', None),
+                    status=row.get('Status', '')
                 ).exists()
 
                 if not exists:
                     record = CycleCount.objects.create(
                         cycle_count=cycle_count_val,
-                        warehouse=row['Warehouse'],
+                        warehouse=row.get('Warehouse', ''),
                         number_of_lines=number_of_lines_val,
                         total_value=total_value_val,
-                        currency=row['Currency'],
-                        created_by=row['Created By'],
-                        created_date=row['Created Date'],
+                        currency=row.get('Currency', ''),
+                        created_by=row.get('Created By', ''),
+                        created_date=row.get('Created Date', None),
                         discrepancy_lines=discrepancy_lines_val,
-                        status=row['Status'],
+                        status=row.get('Status', ''),
                         percentage=percentage_val
                     )
+                    
                     inserted += 1
                     all_valid.append(record)
-                    # break
+                    
+                    count += 1
+                    if count % 500 == 0 or count == total_rows:
+                        print(f"[INFO] Inserted {count}/{total_rows} records...")    
+                   
                 else:
                     skipped += 1
-
+                
             except Exception as e:
                 skipped += 1
                 continue
@@ -511,3 +513,26 @@ class PaidInvoicesView(APIView):
         invoices = PaidInvoices.objects.all()
         serializer = PaidInvoicesSerializer(invoices, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
+import requests
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def get_boldbi_url(request):
+    try:
+        url = "https://cloud.boldbi.com/bi/api/system-settings/get-url"
+
+        headers = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWJlZF91c2VyX2VtYWlsIjoidmlyYWpAY3Jlc2l0YXRlY2guY29tIiwiZW1iZWRfdXNlcl9uYW1lIjoidmlyYWpAY3Jlc2l0YXRlY2guY29tIiwiaXNzIjoiZW1iZWQiLCJleHAiOjE3NTA1OTQwMzl9.dkNgxr9Za5xae5W3_7raMQII2UWHam3eMU3Vh-2dR40",  # replace this with your actual token
+            "Accept": "application/json"
+        }
+
+        response = requests.get(url, headers=headers)
+
+        # Forward exact status and response
+        return JsonResponse(response.json(), status=response.status_code)
+    
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

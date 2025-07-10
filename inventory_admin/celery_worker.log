@@ -1,0 +1,499 @@
+[2025-06-30 21:37:40,608: INFO/SpawnPoolWorker-6] child process 10576 calling self.run()
+[2025-06-30 21:37:40,608: INFO/SpawnPoolWorker-3] child process 4040 calling self.run()
+[2025-06-30 21:37:40,627: INFO/SpawnPoolWorker-4] child process 4840 calling self.run()
+[2025-06-30 21:37:40,630: INFO/SpawnPoolWorker-8] child process 19428 calling self.run()
+[2025-06-30 21:37:40,631: INFO/SpawnPoolWorker-2] child process 20440 calling self.run()
+[2025-06-30 21:37:40,647: INFO/SpawnPoolWorker-11] child process 1008 calling self.run()
+[2025-06-30 21:37:40,649: INFO/SpawnPoolWorker-10] child process 12836 calling self.run()
+[2025-06-30 21:37:40,650: INFO/SpawnPoolWorker-5] child process 3888 calling self.run()
+[2025-06-30 21:37:40,654: INFO/SpawnPoolWorker-7] child process 16464 calling self.run()
+[2025-06-30 21:37:40,654: INFO/SpawnPoolWorker-1] child process 1832 calling self.run()
+[2025-06-30 21:37:40,682: INFO/SpawnPoolWorker-9] child process 10384 calling self.run()
+[2025-06-30 21:37:40,715: INFO/SpawnPoolWorker-12] child process 14696 calling self.run()
+[2025-06-30 21:37:41,422: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 2.00 seconds... (1/100)
+
+[2025-06-30 21:37:45,457: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 4.00 seconds... (2/100)
+
+[2025-06-30 21:37:51,517: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 6.00 seconds... (3/100)
+
+[2025-06-30 21:37:59,539: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 8.00 seconds... (4/100)
+
+[2025-06-30 21:38:09,581: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 10.00 seconds... (5/100)
+
+[2025-06-30 21:38:21,618: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 12.00 seconds... (6/100)
+
+[2025-06-30 21:38:35,656: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 14.00 seconds... (7/100)
+
+[2025-06-30 21:38:51,697: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 16.00 seconds... (8/100)
+
+[2025-06-30 21:39:09,735: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 18.00 seconds... (9/100)
+
+[2025-06-30 21:39:29,768: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 20.00 seconds... (10/100)
+
+[2025-06-30 21:39:51,832: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 22.00 seconds... (11/100)
+
+[2025-06-30 21:40:15,871: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 24.00 seconds... (12/100)
+
+[2025-06-30 21:40:41,911: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 26.00 seconds... (13/100)
+
+[2025-06-30 21:41:09,990: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 28.00 seconds... (14/100)
+
+[2025-06-30 21:41:40,060: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 30.00 seconds... (15/100)
+
+[2025-06-30 21:42:12,115: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:42:46,199: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:43:20,233: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:43:54,281: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:44:28,341: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:45:02,400: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:45:36,436: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:46:10,496: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:46:44,553: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:47:18,583: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:47:52,640: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:48:26,686: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:49:00,731: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:49:34,776: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:50:08,833: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:50:42,873: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:51:16,923: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:51:50,944: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:52:24,993: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:52:59,048: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [WinError 10061] No connection could be made because the target machine actively refused it.
+Trying again in 32.00 seconds... (16/100)
+
+[2025-06-30 21:54:23,952: INFO/SpawnPoolWorker-7] child process 22392 calling self.run()
+
+[2025-06-30 21:54:23,966: INFO/SpawnPoolWorker-4] child process 17580 calling self.run()
+[2025-06-30 21:54:23,968: INFO/SpawnPoolWorker-5] child process 22316 calling self.run()
+[2025-06-30 21:54:23,969: INFO/SpawnPoolWorker-8] child process 21644 calling self.run()
+[2025-06-30 21:54:23,972: INFO/SpawnPoolWorker-6] child process 20612 calling self.run()
+[2025-06-30 21:54:23,974: INFO/SpawnPoolWorker-3] child process 20876 calling self.run()
+[2025-06-30 21:54:23,975: INFO/SpawnPoolWorker-1] child process 22152 calling self.run()
+[2025-06-30 21:54:23,979: INFO/SpawnPoolWorker-2] child process 21228 calling self.run()
+[2025-06-30 21:54:23,989: INFO/SpawnPoolWorker-11] child process 10952 calling self.run()
+[2025-06-30 21:54:23,989: INFO/SpawnPoolWorker-10] child process 13372 calling self.run()
+[2025-06-30 21:54:23,990: INFO/SpawnPoolWorker-9] child process 21412 calling self.run()
+[2025-06-30 21:54:25,429: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2025-06-30 21:54:29,480: INFO/MainProcess] mingle: searching for neighbors
+[2025-06-30 21:54:36,545: INFO/MainProcess] mingle: all alone
+[2025-06-30 21:54:44,659: INFO/MainProcess] celery@sushilsingh ready.
+[2025-06-30 21:55:07,884: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[9ecb68c5-943d-4765-985f-b59b9bc6d6a3] received
+[2025-06-30 21:55:07,961: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+[2025-06-30 22:01:45,881: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[e66c10b9-1f07-44e1-9fd2-8f10f8f4d74d] received
+[2025-06-30 22:01:45,895: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+[2025-06-30 22:04:13,671: INFO/SpawnPoolWorker-8] child process 19832 calling self.run()
+[2025-06-30 22:04:13,671: INFO/SpawnPoolWorker-5] child process 20500 calling self.run()
+[2025-06-30 22:04:13,690: INFO/SpawnPoolWorker-10] child process 21500 calling self.run()
+[2025-06-30 22:04:13,691: INFO/SpawnPoolWorker-3] child process 10640 calling self.run()
+[2025-06-30 22:04:13,692: INFO/SpawnPoolWorker-2] child process 16412 calling self.run()
+[2025-06-30 22:04:13,696: INFO/SpawnPoolWorker-7] child process 22388 calling self.run()
+[2025-06-30 22:04:13,702: INFO/SpawnPoolWorker-4] child process 22180 calling self.run()
+[2025-06-30 22:04:13,709: INFO/SpawnPoolWorker-6] child process 20104 calling self.run()
+[2025-06-30 22:04:13,710: INFO/SpawnPoolWorker-1] child process 948 calling self.run()
+[2025-06-30 22:04:13,746: INFO/SpawnPoolWorker-11] child process 13376 calling self.run()
+[2025-06-30 22:04:13,747: INFO/SpawnPoolWorker-9] child process 3920 calling self.run()
+[2025-06-30 22:04:13,763: INFO/SpawnPoolWorker-12] child process 6152 calling self.run()
+[2025-06-30 22:04:15,182: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2025-06-30 22:04:17,211: INFO/MainProcess] mingle: searching for neighbors
+[2025-06-30 22:04:24,296: INFO/MainProcess] mingle: all alone
+[2025-06-30 22:04:34,460: INFO/MainProcess] celery@sushilsingh ready.
+[2025-06-30 22:09:39,705: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[a60452b0-1afe-4164-aa74-2d84e1fb7218] received
+[2025-06-30 22:09:39,738: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+[2025-06-30 22:11:28,113: INFO/SpawnPoolWorker-1] child process 2092 calling self.run()
+[2025-06-30 22:11:28,115: INFO/SpawnPoolWorker-4] child process 20272 calling self.run()
+[2025-06-30 22:11:28,116: INFO/SpawnPoolWorker-5] child process 14028 calling self.run()
+[2025-06-30 22:11:28,118: INFO/SpawnPoolWorker-2] child process 11376 calling self.run()
+[2025-06-30 22:11:28,127: INFO/SpawnPoolWorker-9] child process 8780 calling self.run()
+[2025-06-30 22:11:28,131: INFO/SpawnPoolWorker-7] child process 17480 calling self.run()
+[2025-06-30 22:11:28,134: INFO/SpawnPoolWorker-6] child process 4324 calling self.run()
+[2025-06-30 22:11:28,144: INFO/SpawnPoolWorker-12] child process 18836 calling self.run()
+[2025-06-30 22:11:28,149: INFO/SpawnPoolWorker-10] child process 5452 calling self.run()
+[2025-06-30 22:11:28,152: INFO/SpawnPoolWorker-3] child process 19384 calling self.run()
+[2025-06-30 22:11:28,164: INFO/SpawnPoolWorker-11] child process 19232 calling self.run()
+[2025-06-30 22:11:28,166: INFO/SpawnPoolWorker-8] child process 1876 calling self.run()
+[2025-06-30 22:11:29,510: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2025-06-30 22:11:33,546: INFO/MainProcess] mingle: searching for neighbors
+[2025-06-30 22:11:41,082: INFO/MainProcess] mingle: all alone
+[2025-06-30 22:11:49,232: INFO/MainProcess] celery@sushilsingh ready.
+[2025-06-30 22:13:13,841: INFO/SpawnPoolWorker-9] child process 18912 calling self.run()
+[2025-06-30 22:13:13,844: INFO/SpawnPoolWorker-12] child process 12924 calling self.run()
+[2025-06-30 22:13:13,847: INFO/SpawnPoolWorker-8] child process 21348 calling self.run()
+[2025-06-30 22:13:13,858: INFO/SpawnPoolWorker-6] child process 20828 calling self.run()
+[2025-06-30 22:13:13,860: INFO/SpawnPoolWorker-10] child process 21016 calling self.run()
+[2025-06-30 22:13:13,861: INFO/SpawnPoolWorker-11] child process 9220 calling self.run()
+[2025-06-30 22:13:13,862: INFO/SpawnPoolWorker-4] child process 22016 calling self.run()
+[2025-06-30 22:13:13,862: INFO/SpawnPoolWorker-1] child process 21876 calling self.run()
+[2025-06-30 22:13:13,865: INFO/SpawnPoolWorker-7] child process 20216 calling self.run()
+[2025-06-30 22:13:13,872: INFO/SpawnPoolWorker-3] child process 12312 calling self.run()
+[2025-06-30 22:13:13,878: INFO/SpawnPoolWorker-5] child process 10948 calling self.run()
+[2025-06-30 22:13:13,882: INFO/SpawnPoolWorker-2] child process 19992 calling self.run()
+[2025-06-30 22:13:15,333: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2025-06-30 22:13:17,356: INFO/MainProcess] mingle: searching for neighbors
+[2025-06-30 22:13:24,454: INFO/MainProcess] mingle: all alone
+[2025-06-30 22:13:34,580: INFO/MainProcess] celery@sushilsingh ready.
+[2025-06-30 22:17:46,725: ERROR/MainProcess] Received unregistered task of type 'inventory.tasks.run_fetch_inventory'.
+The message has been ignored and discarded.
+
+Did you remember to import the module containing this task?
+Or maybe you're using relative imports?
+
+Please see
+https://docs.celeryq.dev/en/latest/internals/protocol.html
+for more information.
+
+The full contents of the message body was:
+b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]' (77b)
+
+The full contents of the message headers:
+{'lang': 'py', 'task': 'inventory.tasks.run_fetch_inventory', 'id': '69507404-df85-4393-8c67-3a5fa77d0b36', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '69507404-df85-4393-8c67-3a5fa77d0b36', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen22356@sushilsingh', 'ignore_result': False, 'replaced_task_nesting': 0, 'stamped_headers': None, 'stamps': {}}
+
+The delivery info for this task is:
+{'exchange': '', 'routing_key': 'celery'}
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\worker\consumer\consumer.py", line 662, in on_task_received
+    strategy = strategies[type_]
+               ~~~~~~~~~~^^^^^^^
+KeyError: 'inventory.tasks.run_fetch_inventory'
+[2025-06-30 22:22:57,158: ERROR/MainProcess] Received unregistered task of type 'inventory.tasks.run_fetch_inventory'.
+The message has been ignored and discarded.
+
+Did you remember to import the module containing this task?
+Or maybe you're using relative imports?
+
+Please see
+https://docs.celeryq.dev/en/latest/internals/protocol.html
+for more information.
+
+The full contents of the message body was:
+b'[[], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]' (77b)
+
+The full contents of the message headers:
+{'lang': 'py', 'task': 'inventory.tasks.run_fetch_inventory', 'id': '4b1bb62f-c5e1-4a1e-af5e-ebe7ab107f3e', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '4b1bb62f-c5e1-4a1e-af5e-ebe7ab107f3e', 'parent_id': None, 'argsrepr': '()', 'kwargsrepr': '{}', 'origin': 'gen22356@sushilsingh', 'ignore_result': False, 'replaced_task_nesting': 0, 'stamped_headers': None, 'stamps': {}}
+
+The delivery info for this task is:
+{'exchange': '', 'routing_key': 'celery'}
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\worker\consumer\consumer.py", line 662, in on_task_received
+    strategy = strategies[type_]
+               ~~~~~~~~~~^^^^^^^
+KeyError: 'inventory.tasks.run_fetch_inventory'
+[2025-06-30 22:26:22,529: INFO/SpawnPoolWorker-4] child process 6944 calling self.run()
+[2025-06-30 22:26:22,529: INFO/SpawnPoolWorker-10] child process 4320 calling self.run()
+[2025-06-30 22:26:22,535: INFO/SpawnPoolWorker-7] child process 15436 calling self.run()
+[2025-06-30 22:26:22,535: INFO/SpawnPoolWorker-2] child process 6012 calling self.run()
+[2025-06-30 22:26:22,538: INFO/SpawnPoolWorker-6] child process 18104 calling self.run()
+[2025-06-30 22:26:22,539: INFO/SpawnPoolWorker-1] child process 996 calling self.run()
+[2025-06-30 22:26:22,541: INFO/SpawnPoolWorker-5] child process 22116 calling self.run()
+[2025-06-30 22:26:22,545: INFO/SpawnPoolWorker-3] child process 3000 calling self.run()
+[2025-06-30 22:26:22,548: INFO/SpawnPoolWorker-8] child process 17532 calling self.run()
+[2025-06-30 22:26:22,565: INFO/SpawnPoolWorker-12] child process 21176 calling self.run()
+[2025-06-30 22:26:22,574: INFO/SpawnPoolWorker-9] child process 14652 calling self.run()
+[2025-06-30 22:26:22,596: INFO/SpawnPoolWorker-11] child process 22380 calling self.run()
+[2025-06-30 22:26:24,033: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2025-06-30 22:26:26,062: INFO/MainProcess] mingle: searching for neighbors
+[2025-06-30 22:26:33,182: INFO/MainProcess] mingle: all alone
+[2025-06-30 22:26:43,314: INFO/MainProcess] celery@sushilsingh ready.
+[2025-06-30 22:27:12,031: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[dad47f50-7fb0-4210-805a-74bd23fec3b8] received
+[2025-06-30 22:27:14,096: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+[2025-06-30 22:31:29,631: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[2aee514f-0384-4112-94b4-0d3d60f0c2d3] received
+[2025-06-30 22:31:29,635: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+[2025-06-30 22:33:03,459: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[ca3de84b-7499-43c3-b869-5883aae31503] received
+[2025-06-30 22:33:03,463: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+[2025-06-30 22:35:18,142: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[76c9fc17-e640-407b-85b3-62d844a30b2f] received
+[2025-06-30 22:35:18,156: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+[2025-06-30 22:36:14,833: INFO/SpawnPoolWorker-1] child process 21236 calling self.run()
+[2025-06-30 22:36:14,859: INFO/SpawnPoolWorker-7] child process 8288 calling self.run()
+[2025-06-30 22:36:14,869: INFO/SpawnPoolWorker-10] child process 8560 calling self.run()
+[2025-06-30 22:36:14,870: INFO/SpawnPoolWorker-8] child process 13788 calling self.run()
+[2025-06-30 22:36:14,879: INFO/SpawnPoolWorker-3] child process 17724 calling self.run()
+[2025-06-30 22:36:14,880: INFO/SpawnPoolWorker-2] child process 21956 calling self.run()
+[2025-06-30 22:36:14,887: INFO/SpawnPoolWorker-6] child process 11596 calling self.run()
+[2025-06-30 22:36:14,892: INFO/SpawnPoolWorker-5] child process 11656 calling self.run()
+[2025-06-30 22:36:14,895: INFO/SpawnPoolWorker-4] child process 13720 calling self.run()
+[2025-06-30 22:36:14,909: INFO/SpawnPoolWorker-12] child process 20216 calling self.run()
+[2025-06-30 22:36:14,927: INFO/SpawnPoolWorker-9] child process 21516 calling self.run()
+[2025-06-30 22:36:14,931: INFO/SpawnPoolWorker-11] child process 18812 calling self.run()
+[2025-06-30 22:36:16,334: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2025-06-30 22:36:18,368: INFO/MainProcess] mingle: searching for neighbors
+[2025-06-30 22:36:25,442: INFO/MainProcess] mingle: all alone
+[2025-06-30 22:36:35,623: INFO/MainProcess] celery@sushilsingh ready.
+[2025-06-30 22:39:34,099: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[8c6c4312-aec2-4f9c-b515-ca525a6fe426] received
+[2025-06-30 22:39:34,169: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+[2025-06-30 22:42:18,501: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[1a6ba11e-9134-4eac-9c51-969660093648] received
+[2025-06-30 22:42:20,582: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+[2025-06-30 22:43:24,096: INFO/MainProcess] Task inventory.tasks.run_fetch_inventory[12f46a6c-c5fc-447e-8d3f-a586a1a671fa] received
+[2025-06-30 22:43:24,174: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)')
+billiard.einfo.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\billiard\pool.py", line 362, in workloop
+    result = (True, prepare_result(fun(*args, **kwargs)))
+                                   ~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rajpo\AppData\Local\Programs\Python\Python313\Lib\site-packages\celery\app\trace.py", line 640, in fast_trace_task
+    tasks, accept, hostname = _loc
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)

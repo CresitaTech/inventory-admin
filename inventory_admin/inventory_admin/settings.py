@@ -23,10 +23,13 @@ AUTH_USER_MODEL = 'users.User'
 SECRET_KEY = 'django-insecure-oo1xo^jzr7t#*ih_w^+)m8iw4wrzg03v1c+cz-2y1!jq(2e$)k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",   # if Angular
+    "http://localhost:3000",   
+]
 
 
 # Application definition
@@ -42,7 +45,16 @@ INSTALLED_APPS = [
     'inventory',
     'rest_framework',
     'corsheaders',
+    'django_celery_beat'
 ]
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+
+
 
 
 
@@ -55,7 +67,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'inventory_admin.urls'
