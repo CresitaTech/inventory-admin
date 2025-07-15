@@ -536,3 +536,79 @@ def get_boldbi_url(request):
     
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+    
+    
+
+class CustomFileUploadView(APIView):
+    def post(self, request):
+        custom_file = request.FILES.get('file')
+
+        if not custom_file:
+            return Response({"error": "No file uploaded."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            # Save the file (e.g., to MEDIA_ROOT/custom_uploads/)
+            file_path = default_storage.save(f'custom_uploads/{custom_file.name}', ContentFile(custom_file.read()))
+        except Exception as e:
+            return Response({"error": f"Failed to store file: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        return Response({
+            "message": "Custom file uploaded successfully.",
+            "file_path": file_path
+        }, status=status.HTTP_201_CREATED)
+        
+        
+
+
+import pandas as pd
+from .models import CpoPaidInvoices
+from datetime import datetime
+
+def parse_date(date_str):
+    try:
+        if pd.isna(date_str) or date_str == '#N/A':
+            return None
+        return datetime.strptime(str(date_str), '%m/%d/%Y')
+    except:
+        return None
+
+class CpoPaidInvoicesView(APIView):
+    def post(self, request):
+        excel_file = request.FILES.get('file')
+        if not excel_file:
+            return Response({"error": "No file uploaded."}, status=status.HTTP_400_BAD_REQUEST)
+
+        df = pd.read_excel(excel_file)
+
+        records = []
+        for _, row in df.iterrows():
+            record = CpoPaidInvoices(
+                po_number=row.get('PO Number'),
+                req_number=row.get('Req #'),
+                order_date=parse_date(row.get('Order Date')),
+                item=row.get('Item'),
+                item_unit_price=row.get('Item Unit price'),
+                item_negotiated_price=row.get('Item Negotiated price'),
+                contract_punchout_user=row.get('Contract/Punchout/User'),
+                invoice_id=row.get('Invoice ID'),
+                invoice_number=row.get('Invoice #'),
+                invoice_date=parse_date(row.get('Invoice Date')),
+                supplier=row.get('Supplier'),
+                total=row.get('Total'),
+                payment_term=row.get('Payment Term'),
+                status=row.get('Status'),
+                requester=row.get('Requester'),
+                current_approver=row.get('Current Approver'),
+                date_received_grn=parse_date(row.get('Date Received- GRN')),
+                invoice_created_date=parse_date(row.get('Invoice Created Date')),
+                net_due_date=parse_date(row.get('Net Due Date')),
+                discount_due_date=parse_date(row.get('Discount Due Date')),
+                payment_date=parse_date(row.get('Payment Date')),
+                epd_potential=row.get('EPD Potential'),
+                delivery_method=row.get('Delivery Method'),
+                pricing_bucket=row.get('Pricing Bucket')
+            )
+            records.append(record)
+
+        CpoPaidInvoices.objects.bulk_create(records, batch_size=1000)
+        return Response({"message": f"{len(records)} records uploaded successfully."}, status=status.HTTP_201_CREATED)

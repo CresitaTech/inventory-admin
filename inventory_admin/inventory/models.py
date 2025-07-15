@@ -137,3 +137,41 @@ class PaidInvoices(models.Model):
         verbose_name = "Paid Invoice"
         verbose_name_plural = 'Paid Invoices'
 
+
+
+from django.db import models
+
+class CpoPaidInvoices(models.Model):
+    po_number = models.CharField(max_length=100, null=True, blank=True)
+    req_number = models.CharField(max_length=100, null=True, blank=True)
+    order_date = models.DateTimeField(null=True, blank=True)
+
+    item = models.CharField(max_length=255, null=True, blank=True)
+    item_unit_price = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    item_negotiated_price = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+
+    contract_punchout_user = models.CharField(max_length=255, null=True, blank=True)
+
+    invoice_id = models.CharField(max_length=100, null=True, blank=True)
+    invoice_number = models.CharField(max_length=100, null=True, blank=True)
+    invoice_date = models.DateTimeField(null=True, blank=True)
+
+    supplier = models.CharField(max_length=255, null=True, blank=True)
+    total = models.DecimalField(max_digits=15, decimal_places=2, null=True, blank=True)
+    payment_term = models.CharField(max_length=100, null=True, blank=True)
+    status = models.CharField(max_length=100, null=True, blank=True)
+    requester = models.CharField(max_length=100, null=True, blank=True)
+    current_approver = models.CharField(max_length=100, null=True, blank=True)
+
+    date_received_grn = models.DateTimeField(null=True, blank=True)
+    invoice_created_date = models.DateTimeField(null=True, blank=True)
+    net_due_date = models.DateTimeField(null=True, blank=True)
+    discount_due_date = models.DateTimeField(null=True, blank=True)
+    payment_date = models.DateTimeField(null=True, blank=True)
+
+    epd_potential = models.CharField(max_length=100, null=True, blank=True)
+    delivery_method = models.CharField(max_length=100, null=True, blank=True)
+    pricing_bucket = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return f"PO: {self.po_number} | Invoice: {self.invoice_number}"
