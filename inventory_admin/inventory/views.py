@@ -566,11 +566,24 @@ from datetime import datetime
 
 def parse_date(date_str):
     try:
-        if pd.isna(date_str) or date_str == '#N/A':
+        if pd.isna(date_str) or str(date_str).strip() in ['#N/A', 'nan', '', 'NaT']:
             return None
-        return datetime.strptime(str(date_str), '%m/%d/%Y')
-    except:
+        return pd.to_datetime(date_str).to_pydatetime()
+    except Exception:
         return None
+    
+
+
+from decimal import Decimal, InvalidOperation
+
+def parse_decimal(value):
+    try:
+        if pd.isna(value) or str(value).strip() in ['#N/A', 'nan', '', 'NaT']:
+            return None
+        return Decimal(str(value))
+    except (InvalidOperation, ValueError):
+        return None
+
 
 class CpoPaidInvoicesView(APIView):
     def post(self, request):
@@ -587,14 +600,14 @@ class CpoPaidInvoicesView(APIView):
                 req_number=row.get('Req #'),
                 order_date=parse_date(row.get('Order Date')),
                 item=row.get('Item'),
-                item_unit_price=row.get('Item Unit price'),
-                item_negotiated_price=row.get('Item Negotiated price'),
+                item_unit_price=parse_decimal(row.get('Item Unit price')),
+                item_negotiated_price=parse_decimal(row.get('Item Negotiated price')),
                 contract_punchout_user=row.get('Contract/Punchout/User'),
                 invoice_id=row.get('Invoice ID'),
                 invoice_number=row.get('Invoice #'),
                 invoice_date=parse_date(row.get('Invoice Date')),
                 supplier=row.get('Supplier'),
-                total=row.get('Total'),
+                total=parse_decimal(row.get('Total')),
                 payment_term=row.get('Payment Term'),
                 status=row.get('Status'),
                 requester=row.get('Requester'),

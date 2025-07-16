@@ -23,7 +23,7 @@ AUTH_USER_MODEL = 'users.User'
 SECRET_KEY = 'django-insecure-oo1xo^jzr7t#*ih_w^+)m8iw4wrzg03v1c+cz-2y1!jq(2e$)k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
