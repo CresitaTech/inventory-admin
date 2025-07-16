@@ -623,5 +623,5 @@ class CpoPaidInvoicesView(APIView):
             )
             records.append(record)
 
-        CpoPaidInvoices.objects.bulk_create(records, batch_size=1000)
+        CpoPaidInvoices.objects.bulk_create(records, batch_size=500)
         return Response({"message": f"{len(records)} records uploaded successfully."}, status=status.HTTP_201_CREATED)
