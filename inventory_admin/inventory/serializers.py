@@ -99,3 +99,12 @@ class PaidInvoicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaidInvoices
         fields = '__all__'
+        
+        
+        
+from .models import UploadInventoryData
+
+class UploadInventoryDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UploadInventoryData
+        fields = '__all__'

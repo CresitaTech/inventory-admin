@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from inventory.views import OnHandBalanceReportView, FetchOnHandBalanceReportView, ProjectedObsolescenceView, CycleCountView, CarryingCostView, InventoryOutstandingView,PaidInvoicesView, get_boldbi_url, CpoPaidInvoicesView
+from inventory.views import OnHandBalanceReportView, FetchOnHandBalanceReportView, ProjectedObsolescenceView, CycleCountView, CarryingCostView, InventoryOutstandingView,PaidInvoicesView, get_boldbi_url, CpoPaidInvoicesView, UploadInventoryDataView
 # from django.urls import path
 
 urlpatterns = [
@@ -36,6 +36,7 @@ urlpatterns = [
     path('cpo-paid-invoices-upload/', CpoPaidInvoicesView.as_view(), name='cpo-paid-invoices-upload'),
     path('get-paid-invoices/', PaidInvoicesView.as_view(), name='paid-invoices-list'),
     path('proxy/boldbi-url/', get_boldbi_url, name='get_boldbi_url'),
+    path('upload-inventory/', UploadInventoryDataView.as_view(), name='upload-inventory'),
     
 ]
 
