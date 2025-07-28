@@ -628,10 +628,22 @@ class CpoPaidInvoicesView(APIView):
     
 
 from .serializers import UploadInventoryDataSerializer
+
 class UploadInventoryDataView(APIView):
     def post(self, request):
-        serializer = UploadInventoryDataSerializer(data=request.data)
+        data = request.data
+        
+        # Check if it's a list for bulk upload
+        if isinstance(data, list):
+            serializer = UploadInventoryDataSerializer(data=data, many=True)
+        else:
+            serializer = UploadInventoryDataSerializer(data=data)
+
         if serializer.is_valid():
             serializer.save()
-            return Response({"message": "Data inserted successfully", "data": serializer.data}, status=status.HTTP_201_CREATED)
+            return Response({
+                "message": "Data inserted successfully",
+                "data": serializer.data
+            }, status=status.HTTP_201_CREATED)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
